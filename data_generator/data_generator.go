@@ -8,10 +8,10 @@ import (
 
 
 type Customer struct {
-	FirstName   string `faker:"first_name"`
-	LastName    string `faker:"last_name"`
-	Email       string `faker:"email"`
-	PhoneNumber string `faker:"phone_number"`
+	FirstName   string `faker:"first_name" json:"firstname"`
+	LastName    string `faker:"last_name" json:"lastname"`
+	Email       string `faker:"email" json:"email"`
+	PhoneNumber string `faker:"phone_number" json:"phonenumber"`
 }
 
 type MyCustomers struct {

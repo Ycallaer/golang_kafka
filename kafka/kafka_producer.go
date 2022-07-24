@@ -18,11 +18,13 @@ type kafkaProducer struct {
 	schemaRegistryURL string
 }
 
+// Creates a KafkaProducer instance
 func NewProducer(bootstrap_server string, topic string, schemaRegistryURL string) *kafkaProducer {
 
 	return &kafkaProducer{boostrapServer: bootstrap_server, topic: topic, schemaRegistryURL: schemaRegistryURL}
 }
 
+//Starts a regular producer
 func StartProducer(p *kafkaProducer, dataSet []datagenerator.Customer) {
 	fmt.Println("Initialising the producer")
 	producer, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": p.boostrapServer})
@@ -59,7 +61,8 @@ func StartProducer(p *kafkaProducer, dataSet []datagenerator.Customer) {
 	producer.Flush(15 * 1000)
 }
 
-func StartProducerWithSchemaRegistry(p *kafkaProducer, dataSet []datagenerator.Customer) {
+// Produces a JSON record to kafka using schema registry
+func StartJsonProducerWithSchemaRegistry(p *kafkaProducer, dataSet []datagenerator.Customer) {
 	schemaRegistryClient := srclient.CreateSchemaRegistryClient(p.schemaRegistryURL)
 	schema, err := schemaRegistryClient.GetLatestSchema(p.topic)
 	if schema == nil {
@@ -99,7 +102,6 @@ func StartProducerWithSchemaRegistry(p *kafkaProducer, dataSet []datagenerator.C
 	topic := p.topic
 
 	for _, customer := range dataSet {
-		//fmt.Println(customer)
 		value, _ := json.Marshal(customer)
 		var recordValue []byte
 

@@ -2,23 +2,23 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "properties": {
-      "first_name": {
+      "firstname": {
         "type": "string"
       },
-      "last_name": {
+      "lastname": {
         "type": "string"
       },
       "email": {
         "type": "string"
       },
-      "phone_number": {
+      "phonenumber": {
         "type": "string"
       }
     },
     "required": [
-      "first_name",
-      "last_name",
+      "firstname",
+      "lastname",
       "email",
-      "phone_number"
+      "phonenumber"
     ]
   }

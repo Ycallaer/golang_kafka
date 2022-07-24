@@ -18,6 +18,7 @@ type MyCustomers struct {
 	Customers []Customer
 }
 
+//Generates dummy customer data
 func GenerateDummyData() []Customer {
 	c := Customer{}
 	customerResult  := MyCustomers{}
